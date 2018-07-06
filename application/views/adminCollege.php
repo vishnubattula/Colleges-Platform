@@ -50,6 +50,7 @@
                     {
                         foreach($adminCollegeRecords as $record)
                         {
+                            $status = ($record->status == '1') ? 'Active' : 'Deactive';
                     ?>
                     <tr>
                       <td><?php echo $record->collegeId ?></td>
@@ -61,10 +62,10 @@
                       <td><?php echo $record->short_desc ?></td>
                       <td><?php echo $record->long_desc ?></td>
                       <td><?php echo $record->image ?></td>
-                      <td><?php echo $record->status ?></td>
+                      <td><?php echo $status ?></td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->userId; ?>"><i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->userId; ?>"><i class="fa fa-trash"></i></a>
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOldCollege/'.$record->collegeId; ?>"><i class="fa fa-pencil"></i></a>
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->collegeId; ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php

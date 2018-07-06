@@ -1,9 +1,32 @@
+<?php
+
+$userId = '';
+$name = '';
+$email = '';
+$mobile = '';
+$roleId = '';
+
+if(!empty($userInfo))
+{
+    foreach ($userInfo as $uf)
+    {
+        $userId = $uf->userId;
+        $name = $uf->name;
+        $email = $uf->email;
+        $mobile = $uf->mobile;
+        $roleId = $uf->roleId;
+    }
+}
+
+
+?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> College Management
-        <small>Add / Edit College</small>
+        <i class="fa fa-users"></i> User Management
+        <small>Add / Edit User</small>
       </h1>
     </section>
     
@@ -47,68 +70,68 @@
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter College Details</h3>
+                        <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addNewCollege" action="<?php echo base_url() ?>addNewCollege" method="post" role="form" enctype="multipart/form-data">
+                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="cname">Name</label>
-                                        <input type="text" class="form-control required" id="cname" name="cname" maxlength="128">
+                                        <label for="fname">Full Name</label>
+                                        <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" value="<?php echo $name; ?>" maxlength="128">
+                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" id="userId" />    
                                     </div>
                                     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cemail">Email Address</label>
-                                        <input type="text" class="form-control required email" id="cemail"  name="cemail" maxlength="128">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email; ?>" maxlength="128">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cmobile">Mobile</label>
-                                        <input type="tel" class="form-control required" id="cmobile"  name="cmobile" maxlength="10">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="curl">URL</label>
-                                        <input type="url" class="form-control required" id="curl" name="curl">
+                                        <label for="cpassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="cpassword" maxlength="10">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="caddress">Address</label>
-                                        <input type="textarea" class="form-control required" id="caddress" name="caddress">
+                                        <label for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                     <div class="form-group">
-                                        <label for="csdesc">Short Description</label>
-                                        <input type="textarea" class="form-control required" id="csdesc" name="csdesc">
+                                    <div class="form-group">
+                                        <label for="role">Role</label>
+                                        <select class="form-control" id="role" name="role">
+                                            <option value="0">Select Role</option>
+                                            <?php
+                                            if(!empty($roles))
+                                            {
+                                                foreach ($roles as $rl)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $rl->roleId; ?>" <?php if($rl->roleId == $roleId) {echo "selected=selected";} ?>><?php echo $rl->role ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>    
-                            </div>
-                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cldesc">Long Description</label>
-                                        <input type="textarea" class="form-control required" id="cldesc"  name="cldesc">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cimage">Add Image</label>
-                                        <input type="file" class="form-control required" id="cimage" name="cimage">
-                                    </div>
-                                </div>
                             </div>
                         </div><!-- /.box-body -->
     
@@ -121,6 +144,6 @@
             </div>
         </div>    
     </section>
-    
 </div>
-<script src="<?php echo base_url(); ?>assets/js/addCollege.js" type="text/javascript"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>

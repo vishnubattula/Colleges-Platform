@@ -70,6 +70,9 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 $route['adminCollege'] = "adminCollege/adminCollegeListing";
 $route['addNewCollege'] = "adminCollege/addNewCollege";
+$route['editOldCollege'] = "adminCollege/editOldCollege";
+
+$route['CollegeList'] = "collegeUi";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
